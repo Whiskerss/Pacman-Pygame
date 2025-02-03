@@ -15,12 +15,12 @@ This repository contains the code for a classic Pacman game implemented in Pytho
 
 ## Features
 - Classic Pacman gameplay
-- Multiple levels
+<!--- Multiple levels-->
 - Score tracking
 - Simple AI for ghosts
 
 ## Installation
-To run the Pacman game, you need to have Python installed on your system. Follow the steps below to set up the project:
+<!--To run the Pacman game, you need to have Python installed on your system. Follow the steps below to set up the project:
 
 1. Clone the repository:
     ```bash
@@ -33,13 +33,13 @@ To run the Pacman game, you need to have Python installed on your system. Follow
 3. Install the required dependencies:
     ```bash
     pip install -r requirements.txt
-    ```
+    ```-->
 
 ## Usage
-To start the game, run the following command:
+<!--To start the game, run the following command:
 ```bash
 python pacman.py
-```
+```-->
 
 ## Contributing
 We welcome contributions to improve the Pacman game. If you would like to contribute, please follow these steps:
