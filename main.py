@@ -23,8 +23,13 @@ class Game:
             'player/vertical': Animation(load_images('entities/player/vertical'), img_dur=8),
         }
 
-        self.player = Player(self, (100, 100), (30, 30))
+        self.player = Player(self, (240, 100), (30, 30))
+        self.speed = 2
         self.tilemap = Tilemap(self, tile_size=30)
+        try:
+            self.tilemap.load('assets/maps/map.json')
+        except FileNotFoundError:
+            pass
 
     def run(self):
         # -- Game Loop --
@@ -33,7 +38,7 @@ class Game:
 
             self.tilemap.render(self.display)
 
-            self.player.update(self.tilemap, (self.movement[1] - self.movement[0], self.movement[3] - self.movement[2]))
+            self.player.update(self.tilemap, ((self.movement[1] - self.movement[0]) * self.speed, (self.movement[3] - self.movement[2]) * self.speed))
             self.player.render(self.display)
 
             for event in pygame.event.get():
@@ -67,8 +72,5 @@ class Game:
             self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0, 0))
             pygame.display.update()
             self.clock.tick(60)
-
-
-
 
 Game().run()

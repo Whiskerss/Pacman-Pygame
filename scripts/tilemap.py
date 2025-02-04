@@ -1,7 +1,8 @@
 import pygame
+import json
 
 NEIGHBOR_OFFSETS = [(-1, 0), (-1, -1), (0, -1), (1, -1), (1, 0), (0, 0), (-1, 1), (0, 1), (1, 1)]
-COLLISION_TILES = {'wall', 'floor'}
+COLLISION_TILES = {'wall'}
 
 class Tilemap:
     def __init__(self, game, tile_size=30):
@@ -22,6 +23,15 @@ class Tilemap:
             if check_loc in self.tilemap:
                 tiles.append(self.tilemap[check_loc])
         return tiles
+    
+    def load(self, path):
+        file = open(path, 'r')
+        map_data = json.load(file)
+        file.close()
+
+        self.tile_size = map_data['tile_size']
+        self.tilemap = map_data['tilemap']
+        self.offgrid_tiles = map_data['offgrid']
     
     def collision_rects_around(self, pos):
         rects = []
