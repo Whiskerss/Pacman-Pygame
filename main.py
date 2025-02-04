@@ -1,8 +1,8 @@
 import sys
 import pygame
 
-from scripts.utils import load_image, load_images
-from scripts.entities import Entity
+from scripts.utils import load_image, load_images, Animation
+from scripts.entities import Entity, Player
 from scripts.tilemap import Tilemap
 
 class Game:
@@ -18,10 +18,12 @@ class Game:
         self.assets = {
             'wall': load_images('tiles/wall'),
             'floor': load_images('tiles/floor'),
-            'player': load_image('entities/player/00_player.png')
+            'player': load_image('entities/player/00_player.png'),
+            'player/horizontal': Animation(load_images('entities/player/horizontal'), img_dur=8),
+            'player/vertical': Animation(load_images('entities/player/vertical'), img_dur=8),
         }
 
-        self.player = Entity(self, 'player', (100, 100), (30, 30))
+        self.player = Player(self, (100, 100), (30, 30))
         self.tilemap = Tilemap(self, tile_size=30)
 
     def run(self):
