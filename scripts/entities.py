@@ -1,7 +1,7 @@
 import pygame
 
 class Entity:
-    def __init__(self, game, e_type, pos, size):
+    def __init__(self, game, e_type, pos, size, action='horizontal'):
         self.game = game
         self.type = e_type
         self.pos = list(pos)
@@ -13,7 +13,7 @@ class Entity:
         self.anim_offset = (0, 0)
         self.x_flip = False
         self.y_flip = False
-        self.set_action('horizontal')
+        self.set_action(action)
 
     def rect(self):
         return pygame.Rect(self.pos[0], self.pos[1], self.size[0], self.size[1])
@@ -65,6 +65,15 @@ class Entity:
 
     def render(self, surf, offset=(0, 0)):
         surf.blit(pygame.transform.flip(self.animation.img(), self.x_flip, self.y_flip), (self.pos[0] - offset[0] + self.anim_offset[0], self.pos[1] - offset[1] + self.anim_offset[1]))
+
+class Enemy(Entity):
+    def __init__(self, game, type, pos, size):
+        self.type = type
+        super().__init__(game, 'enemy', pos, size, f'{self.type}/horizontal')
+
+    def update(self, tilemap, movement=(0, 0)):
+
+        super().update(tilemap, movement=movement)
 
 class Player(Entity):
     def __init__(self, game, pos, size):
