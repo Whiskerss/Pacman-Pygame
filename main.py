@@ -9,8 +9,8 @@ class Game:
     def __init__(self):
         pygame.init()
         pygame.display.set_caption('Pacman')
-        self.screen = pygame.display.set_mode((1000, 800))
-        self.display = pygame.Surface((500, 400))
+        self.screen = pygame.display.set_mode((690, 780))
+        self.display = pygame.Surface((690, 780))
         self.clock = pygame.time.Clock()
 
         self.movement = [False, False, False, False]
